@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  dot-ly-app:
+    build: .
+    container_name: dot-ly-app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - dot-ly-db
+    environment:
+      - DB_HOST=dot-ly-db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=tinyapp
+      - DB_PORT=5432
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm run start
+
+  dot-ly-db:
+    image: postgres:15
+    container_name: dot-ly-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tinyapp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
