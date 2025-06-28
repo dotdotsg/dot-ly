@@ -17,9 +17,6 @@ app.use(cookieSession({
   keys: ["secretKey1", "secretKey2"],
 }));
 
-const urlDatabase = {}; // your short:long URLs
-const users = {};       // your user db
-
 // define routes here (register, login, create, show, delete short urls)
 //must add this middleware for the request.body to contain form value
 app.use(express.json()); // <-- important for JSON request body
@@ -28,15 +25,13 @@ app.use(cookieSession({
   name: 'session',
   keys: ['userID'],
 }));
+app.use(express.static('public'));
 
 
 app.get("/", (req, res) => {
   res.redirect('/urls');
 });
 
-// app.listen(PORT, () => {
-//   console.log(`Example app listening on port ${PORT}!`);
-// });
 
 app.get("/urls.json", (req, res) => {
   res.json(urlDatabase);
@@ -45,8 +40,8 @@ app.get("/urls.json", (req, res) => {
 app.get("/hello", (req, res) => {
   res.send("<html><body>Hello <b>World</b></body></html>\n");
 });
-app.get('/register', (req, res) => res.render('register'));
-app.get('/login', (req, res) => res.render('login'));
+app.get('/register', (req, res) => res.render('register', { error: null }));
+app.get('/login', (req, res) => res.render('login', { error: null }));
 
 // register a user
 app.post('/register', async (req, res) => {
@@ -71,7 +66,7 @@ app.post('/login', async (req, res) => {
   const user = await getUserByEmail(email);
 
   if (!user || !bcrypt.compareSync(password, user.password))
-    return res.status(403).send('Invalid credentials');
+    return res.status(403).render('login', { error: 'Invalid credentials' });
 
   req.session.userID = user.id;
   res.redirect('/urls');
@@ -120,7 +115,6 @@ app.get('/u/:shortCode', async (req, res) => {
     return res.status(404).send('Short URL not found');
   }
 
-  // Optional: Update visit count
   await db.query('UPDATE urls SET visit_count = visit_count + 1 WHERE short_code = $1', [shortCode]);
 
   res.redirect(urlEntry.long_url);
@@ -139,8 +133,43 @@ app.get('/urls/:shortCode', async (req, res) => {
 
   res.render('urls_show', { url: urlEntry, qrCode: qrCodeDataURL, shortUrl });
 });
+// delete url
+app.post('/urls/:shortCode/delete', async (req, res) => {
+  const { shortCode } = req.params;
+  const userId = req.session.userID;
 
+  // Optional: ensure user owns the URL
+  await db.query('DELETE FROM urls WHERE short_code = $1 AND user_id = $2', [shortCode, userId]);
 
+  res.redirect('/urls');
+});
+// Editing a url
+// Show edit form
+app.get('/urls/:shortCode/edit', async (req, res) => {
+  const { shortCode } = req.params;
+  const userId = req.session.userID;
+
+  const result = await db.query('SELECT * FROM urls WHERE short_code = $1 AND user_id = $2', [shortCode, userId]);
+  const url = result.rows[0];
+  if (!url) return res.status(404).send('URL not found');
+
+  res.render('urls_edit', { url });
+});
+
+// Handle edit submission
+app.post('/urls/:shortCode/edit', async (req, res) => {
+  const { shortCode } = req.params;
+  const { longUrl } = req.body;
+  const userId = req.session.userID;
+
+  await db.query('UPDATE urls SET long_url = $1 WHERE short_code = $2 AND user_id = $3', [longUrl, shortCode, userId]);
+  res.redirect('/urls');
+});
+// logout
+app.post('/logout', (req, res) => {
+  req.session = null; 
+  res.redirect('/login');
+});
 
 
 

@@ -5,84 +5,8 @@
     <meta charset="UTF-8">
     <title>Dashboard | dot-ly</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: #f9fafc;
-        }
+    <link rel="stylesheet" href="/styles/main.css">
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: #3f51b5;
-            color: white;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .logout-btn {
-            background: white;
-            color: #3f51b5;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        h2 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background: #f0f0f0;
-            font-weight: 600;
-        }
-
-        a {
-            color: #3f51b5;
-            text-decoration: none;
-        }
-
-        .new-url-btn {
-            display: inline-block;
-            margin-bottom: 1rem;
-            background: #3f51b5;
-            color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
@@ -106,7 +30,7 @@
                     <th>Original URL</th>
                     <th>Visits</th>
                     <th>Created At</th>
-                    <th>View</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -128,8 +52,13 @@
                         <td>
                             <%= new Date(url.created_at).toLocaleString() %>
                         </td>
-                        <td>
-                            <a href="/urls/<%= url.short_code %>">QR</a>
+                        <td class="actions">
+                            <a href="/urls/<%= url.short_code %>" class="btn view">View</a>
+                            <a href="/urls/<%= url.short_code %>/edit" class="btn edit">Edit</a>
+
+                            <form action="/urls/<%= url.short_code %>/delete" method="POST" style="display:inline">
+                                <button type="submit" class="btn delete">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     <% }) %>

@@ -5,77 +5,23 @@
     <meta charset="UTF-8">
     <title>Login | dot-ly</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: #f0f2f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+    <link rel="stylesheet" href="/styles/main.css">
 
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 350px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-
-        .logo {
-            font-weight: 600;
-            font-size: 28px;
-            color: #3f51b5;
-        }
-
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 0.5rem 0 1rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-
-        button {
-            width: 100%;
-            background: #3f51b5;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        p {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 14px;
-        }
-
-        a {
-            color: #3f51b5;
-            text-decoration: none;
-        }
-    </style>
 </head>
 
-<body>
+<body class="auth-page">
     <div class="card">
-        <h1><span class="logo">dot-ly</span> Login</h1>
+        <h1 class="logo">dot-ly</h1>
+        <h1>Login</h1>
         <form action="/login" method="POST">
-            <input type="email" name="email" placeholder="Email Address" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <% if (error) { %>
+                <div class="error-box">
+                    <%= error %>
+                </div>
+                <% } %>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
         </form>
         <p>Don't have an account? <a href="/register">Register here</a></p>
     </div>

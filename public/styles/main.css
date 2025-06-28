@@ -1,0 +1,184 @@
+/* === Base === */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f9fafc;
+}
+.app-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+/* === Navbar === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #3f51b5;
+  color: white;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* === Container (Dashboard) === */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #f0f0f0;
+  font-weight: 600;
+}
+
+td.actions {
+  width: 220px;
+}
+
+a {
+  color: #3f51b5;
+  text-decoration: none;
+}
+
+.new-url-btn {
+  display: inline-block;
+  margin-bottom: 1rem;
+  background: #3f51b5;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* === Action Buttons (Edit, Delete, View QR) === */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions .btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.actions .btn.edit {
+  background-color: #1976d2;
+  color: white;
+}
+
+.actions .btn.delete {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.actions .btn.view {
+  background-color: #388e3c;
+  color: white;
+}
+
+.actions .btn:hover {
+  opacity: 0.9;
+}
+
+/* === Auth Form (Login/Register) === */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+.card h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.card .logo {
+  font-weight: 600;
+  font-size: 28px;
+  color: #3f51b5;
+}
+
+.card input[type="email"],
+.card input[type="password"],
+.card input[type="text"] {
+  width: 90%;
+  padding: 10px;
+  margin: 0.5rem auto 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: block;
+}
+
+.card button {
+  width: 100%;
+  background: #3f51b5;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.card p {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 14px;
+}
+.error-box {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fdecea;
+  color: #b71c1c;
+  padding: 10px;
+  margin: 0.5rem auto 1rem;
+  font-size: 16px;
+  line-height: 1.2;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+}

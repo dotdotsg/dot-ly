@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit URL | dot-ly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+
+</head>
+
+<body class="app-page">
+    <div class="card">
+        <h2>Edit Short URL</h2>
+        <form action="/urls/<%= url.short_code %>/edit" method="POST">
+            <label>Short Code</label>
+            <input type="text" value="<%= url.short_code %>" disabled>
+
+            <label>Long URL</label>
+            <input type="text" name="longUrl" value="<%= url.long_url %>" required>
+
+            <button type="submit">Save Changes</button>
+        </form>
+        <a href="/urls">← Back to dashboard</a>
+    </div>
+</body>
+
+</html>
