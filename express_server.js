@@ -19,8 +19,8 @@ app.use(cookieSession({
 
 // define routes here (register, login, create, show, delete short urls)
 //must add this middleware for the request.body to contain form value
-app.use(express.json()); // <-- important for JSON request body
-app.use(express.urlencoded({ extended: true })); // <-- for form data
+app.use(express.json()); // important for JSON request body
+app.use(express.urlencoded({ extended: true })); //  for form data
 app.use(express.static('public'));
 
 
