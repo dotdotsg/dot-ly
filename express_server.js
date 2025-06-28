@@ -21,10 +21,6 @@ app.use(cookieSession({
 //must add this middleware for the request.body to contain form value
 app.use(express.json()); // <-- important for JSON request body
 app.use(express.urlencoded({ extended: true })); // <-- for form data
-app.use(cookieSession({
-  name: 'session',
-  keys: ['userID'],
-}));
 app.use(express.static('public'));
 
 
@@ -37,9 +33,6 @@ app.get("/urls.json", (req, res) => {
   res.json(urlDatabase);
 });
 
-app.get("/hello", (req, res) => {
-  res.send("<html><body>Hello <b>World</b></body></html>\n");
-});
 app.get('/register', (req, res) => res.render('register', { error: null }));
 app.get('/login', (req, res) => res.render('login', { error: null }));
 
