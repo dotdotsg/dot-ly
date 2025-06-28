@@ -17,9 +17,10 @@
   "license": "ISC",
   "author": "Sumeet Gupta",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "express_server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon -L express_server.js",
+    "test": "mocha"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -27,5 +28,10 @@
     "cookie-session": "^2.1.0",
     "express": "^5.1.0",
     "pg": "^8.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "chai": "^5.2.0",
+    "mocha": "^11.7.1"
   }
 }
