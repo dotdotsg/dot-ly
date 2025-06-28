@@ -26,12 +26,14 @@
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "cookie-session": "^2.1.0",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "pg": "^8.16.2"
+    "pg": "^8.16.2",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10",
     "chai": "^5.2.0",
-    "mocha": "^11.7.1"
+    "mocha": "^11.7.1",
+    "nodemon": "^3.1.10"
   }
 }

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | dot-ly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #f9fafc;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            background: white;
+            color: #3f51b5;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+        }
+
+        a {
+            color: #3f51b5;
+            text-decoration: none;
+        }
+
+        .new-url-btn {
+            display: inline-block;
+            margin-bottom: 1rem;
+            background: #3f51b5;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">dot-ly</div>
+        <form action="/logout" method="POST" style="margin: 0;">
+            <button class="logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>Your Shortened URLs</h2>
+
+        <a href="/urls/new" class="new-url-btn">+ New URL</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Short URL</th>
+                    <th>Original URL</th>
+                    <th>Visits</th>
+                    <th>Created At</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% urls.forEach(url=> { %>
+                    <tr>
+                        <td>
+                            <a href="/u/<%= url.short_code %>" target="_blank">
+                                <%= host %>/u/<%= url.short_code %>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<%= url.long_url %>" target="_blank">
+                                <%= url.long_url %>
+                            </a>
+                        </td>
+                        <td>
+                            <%= url.visit_count %>
+                        </td>
+                        <td>
+                            <%= new Date(url.created_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <a href="/urls/<%= url.short_code %>">QR</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>dot-ly | QR Code</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f9fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .short-url {
+            font-size: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .short-url a {
+            color: #3f51b5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        img {
+            margin-top: 1rem;
+            width: 200px;
+            height: 200px;
+        }
+
+        .back {
+            margin-top: 1rem;
+            display: inline-block;
+            text-decoration: none;
+            color: #3f51b5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="short-url">
+            <p>Your Short URL:</p>
+            <a href="/u/<%= url.short_code %>" target="_blank">
+                <%= shortUrl %>
+            </a>
+        </div>
+        <p>Scan or share this QR code:</p>
+        <img src="<%= qrCode %>" alt="QR Code">
+        <a href="/urls" class="back">← Back to dashboard</a>
+    </div>
+</body>
+
+</html>
