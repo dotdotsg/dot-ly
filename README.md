@@ -21,10 +21,28 @@ A Full Stack Web Application that allows users to shorten long URLs. Built with 
 | POST   | `/urls/:id/update` | Update long URL             |
 
 
-## For your dot-ly app:
+## For your postgres DB Setup on local  :
+Create two tables users and urls:
 
-urls.id: keep as VARCHAR(50) (short link IDs must be custom)
+```
+CREATE TABLE users (
+  id VARCHAR(50) PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+```
 
-users.id:
-Use VARCHAR(50) + app-generated ID (e.g., nanoid) → if you want portability and full control
-Use SERIAL → if you want simplicity and DB-controlled PK
+
+```
+CREATE TABLE urls (
+  id VARCHAR(50) PRIMARY KEY,
+  short_code VARCHAR(10) UNIQUE NOT NULL,
+  long_url TEXT NOT NULL,
+  user_id VARCHAR(50) REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  visit_count INTEGER DEFAULT 0
+);
+```
+
+The details for these is given in [text](data/create-schema.sql)
