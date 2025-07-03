@@ -40,7 +40,7 @@ app.get("/urls.json", (req, res) => {
 app.get('/register', (req, res) => res.render('register', { error: null }));
 app.get('/login', (req, res) => res.render('login', { error: null }));
 
-// module.exports = serverless(app);
+module.exports = serverless(app);
 
 
 // register a user
