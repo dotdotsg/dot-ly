@@ -17,10 +17,10 @@
   "license": "ISC",
   "author": "Sumeet Gupta",
   "type": "commonjs",
-  "main": "express_server.js",
+  "main": "api/express_server.js",
   "scripts": {
     "build": "node api/express_server",
-    "start": "nodemon -L express_server.js",
+    "start": "nodemon -L api/express_server.js",
     "test": "mocha"
   },
   "dependencies": {
