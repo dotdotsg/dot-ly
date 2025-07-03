@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const db = require('./data/db');
 const { getUserByEmail, getUrlsForUser, generateShortCode } = require('./helper.js');
 const QRCode = require('qrcode');
+require('dotenv').config();
+
 
 
 const PORT = 8000;
