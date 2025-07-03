@@ -45,4 +45,4 @@ CREATE TABLE urls (
 );
 ```
 
-The details for these is given in [text](data/create-schema.sql)
+The details for these is given in [Schema : create-schema.sql](data/create-schema.sql)
