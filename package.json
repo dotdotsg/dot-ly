@@ -32,8 +32,7 @@
     "express": "^5.1.0",
     "pg": "^8.16.2",
     "qrcode": "^1.5.4",
-    "serverless-http": "^3.2.0",
-    "vercel": "^44.2.11"
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "chai": "^5.2.0",
