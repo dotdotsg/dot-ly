@@ -3,10 +3,12 @@ const app = express();
 const bcrypt = require("bcryptjs");
 const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
-const db = require('./data/db');
-const { getUserByEmail, getUrlsForUser, generateShortCode } = require('./helper.js');
+const db = require('../data/db.js');
+const { getUserByEmail, getUrlsForUser, generateShortCode } = require('../helper.js');
 const QRCode = require('qrcode');
-require('dotenv').config();
+const serverless = require('serverless-http');
+
+const config = require('dotenv').config();
 
 
 
@@ -37,6 +39,9 @@ app.get("/urls.json", (req, res) => {
 
 app.get('/register', (req, res) => res.render('register', { error: null }));
 app.get('/login', (req, res) => res.render('login', { error: null }));
+
+// module.exports = serverless(app);
+
 
 // register a user
 app.post('/register', async (req, res) => {
@@ -165,9 +170,6 @@ app.post('/logout', (req, res) => {
   req.session = null; 
   res.redirect('/login');
 });
-
-
-
 
 
 app.listen(8000, () => console.log('Server running on http://localhost:8000'));
