@@ -45,4 +45,19 @@ CREATE TABLE urls (
 );
 ```
 
-The details for these is given in [Schema : create-schema.sql](data/create-schema.sql)
+The details for these is given in [Schema : data/create-schema.sql](data/create-schema.sql)
+
+## Setting up environment file
+Create a .env file and add the required environment variables in it :
+
+```
+DATABASE_URL=YOUR_DB_CONNECTION_URL
+```
+
+## Running the application in Docker Container
+
+```
+docker compose up --build
+```
+
+Note : Make sure the docker daemon is up and running. once built , you will see container named dot-ly with two services running : postgres-db and app
