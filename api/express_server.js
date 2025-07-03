@@ -20,8 +20,8 @@ app.use(cookieSession({
   name: 'session',
   keys: ["secretKey1", "secretKey2"],
 }));
-// app.use('/static', express.static(path.join(__dirname, '../public')))
-app.use(express.static('../public'));
+app.use('/static', express.static(path.join(__dirname, '../public')))
+// app.use(express.static('../public'));
 // define routes here (register, login, create, show, delete short urls)
 //must add this middleware for the request.body to contain form value
 app.use(express.json()); // important for JSON request body
