@@ -19,6 +19,7 @@
   "type": "commonjs",
   "main": "express_server.js",
   "scripts": {
+    "build": "node express_server",
     "start": "nodemon -L express_server.js",
     "test": "mocha"
   },
