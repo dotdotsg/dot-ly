@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const db = require('../data/db.js');
 const { getUserByEmail, getUrlsForUser, generateShortCode } = require('../helper.js');
 const QRCode = require('qrcode');
-const serverless = require('serverless-http');
 
 const config = require('dotenv').config();
 
@@ -175,4 +174,4 @@ app.post('/logout', (req, res) => {
 
 app.listen(8000, () => console.log('Server running on http://localhost:8000'));
 
-module.exports = serverless(app);
+module.exports = app;
