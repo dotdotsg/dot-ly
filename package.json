@@ -19,7 +19,7 @@
   "type": "commonjs",
   "main": "api/express_server.js",
   "scripts": {
-    "build": "node api/express_server",
+    "build": "echo 'no build needed'",
     "start": "nodemon -L api/express_server.js",
     "test": "mocha"
   },

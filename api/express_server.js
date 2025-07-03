@@ -28,6 +28,10 @@ app.use(express.urlencoded({ extended: true })); //  for form data
 app.use(express.static('public'));
 
 
+app.get('/hello', (req, res) => {
+  res.send('Hello from dot-ly App!')
+})
+
 app.get("/", (req, res) => {
   res.redirect('/urls');
 });
@@ -39,8 +43,6 @@ app.get("/urls.json", (req, res) => {
 
 app.get('/register', (req, res) => res.render('register', { error: null }));
 app.get('/login', (req, res) => res.render('login', { error: null }));
-
-
 
 // register a user
 app.post('/register', async (req, res) => {
