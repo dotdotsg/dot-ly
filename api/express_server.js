@@ -14,6 +14,7 @@ const config = require('dotenv').config();
 const PORT = 8000;
 
 app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, '../views'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieSession({
   name: 'session',
